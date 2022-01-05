@@ -1,0 +1,23 @@
+version: '3'
+networks:
+  delivery:
+    external: true
+services:
+  #Database app
+  app_database:
+    container_name: 'delivery-dev-db'
+    image: 'postgres:latest'
+    restart: always
+    volumes:
+      - $HOME/Desktop/PostgreSql-Snippets/infile:/infile
+      - pg_data:/var/lib/postgresql/data/
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=delivery
+    networks:
+      - delivery
+volumes:
+  pg_data:
+  
